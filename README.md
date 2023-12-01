@@ -56,39 +56,84 @@ Hyperparameter Tuning: Fine-tuning the Random Forest model's hyperparameters to 
 Evaluation: Assessing model performance using metrics such as accuracy, precision, recall, F1-score, and the area under the ROC curve (AUC-ROC).
 
 ### Evaluation
-Baseline Model Results
-Accuracy: 84.7%
-Explanation: Accuracy is the proportion of correctly classified instances among the total instances. In this context, the baseline model correctly predicted customer churn 84.7% of the time. While accuracy is a common metric, it may not be sufficient when dealing with imbalanced datasets, where one class (e.g., churn instances) is much less frequent than the other.
-Precision for Churn (True): 0.44
-Explanation: Precision measures the accuracy of positive predictions. In the context of customer churn, it indicates the proportion of predicted churn instances that are actually true churn instances. A precision of 0.44 means that when the model predicts churn, it is correct 44% of the time.
-Recall for Churn (True): 0.04
-Explanation: Recall (or sensitivity) measures the ability of the model to capture all true positive instances. A recall of 0.04 indicates that the baseline model identified only 4% of the actual churn instances. This is a concern as it suggests the model is not sensitive enough to capture a significant portion of customers who actually churned.
-F1-Score for Churn (True): 0.07
-Explanation: The F1-Score is the harmonic mean of precision and recall. It provides a balance between precision and recall. A low F1-Score (0.07 in this case) suggests that the model's performance is suboptimal, indicating room for improvement in capturing both precision and recall simultaneously.
-AUC-ROC Score: 0.7157
-Explanation: The area under the Receiver Operating Characteristic (ROC) curve (AUC-ROC) measures the model's ability to distinguish between positive and negative instances. A score of 0.7157 indicates a moderate level of discriminatory power. Higher AUC-ROC scores (closer to 1) are generally desired, as they signify better model performance.
-Random Forest Model Results
-Accuracy: 93.6%
-Explanation: The Random Forest model achieved a higher accuracy compared to the baseline, indicating an improvement in overall correct predictions.
-Precision for Churn (True): 0.95
-Explanation: The precision for churn significantly increased to 0.95, signifying that when the model predicts churn, it is correct 95% of the time. This is a substantial improvement over the baseline.
-Recall for Churn (True): 0.60
-Explanation: The recall also improved to 0.60, indicating that the Random Forest model identified 60% of the actual churn instances. This is a notable enhancement compared to the baseline.
-F1-Score for Churn (True): 0.74
-Explanation: The F1-Score increased, indicating a better balance between precision and recall. A value of 0.74 suggests improved overall model performance compared to the baseline.
-AUC-ROC Score: 0.9342
-Explanation: The AUC-ROC score significantly increased, reaching 0.9342. This signifies a high ability of the model to distinguish between churn and non-churn instances, indicating robust discriminatory power.
-Tuned Random Forest Model Results
-Accuracy: 93.25%
-Explanation: The accuracy slightly decreased compared to the untuned Random Forest model, but it remains high.
-Precision for Churn (True): 0.97
-Explanation: The precision for churn further increased to 0.97, indicating an even higher accuracy in predicting churn instances.
-Recall for Churn (True): 0.57
-Explanation: The recall decreased slightly to 0.57, indicating a trade-off between precision and recall. While precision is high, the model might miss some actual churn instances.
-F1-Score for Churn (True): 0.72
-Explanation: The F1-Score, although slightly lower than the untuned model, remains at a level indicative of good overall model performance.
-AUC-ROC Score: 0.9291
-Explanation: The AUC-ROC score, while slightly lower than the untuned model, is still high, indicating strong discriminatory power.
+Baseline Model: Logistic Regression
+Results:
+Accuracy: 84.56%
+Classification Report:
+Precision (Churn): 33%
+Recall (Churn): 2%
+F1-Score (Churn): 4%
+Confusion Matrix:
+True Negatives (Non-churn): 562
+False Positives (Churn): 4
+False Negatives (Non-churn): 99
+True Positives (Churn): 2
+
+ ![BL WS](https://github.com/RuthNanjala/project_3/assets/141912190/fb6fc3ad-1fec-4339-b4bd-2c9ce2f21d72)
+
+Interpretation:
+The baseline logistic regression model achieved an accuracy of 84.56% but demonstrated low recall for the churn class, indicating its limitations in identifying instances of churn.
+
+SMOTE Model: Logistic Regression
+Results:
+Accuracy: 68.82%
+Classification Report:
+Precision (Churn): 27%
+Recall (Churn): 63%
+F1-Score (Churn): 38%
+Confusion Matrix:
+True Negatives (Non-churn): 395
+False Positives (Churn): 171
+False Negatives (Non-churn): 37
+True Positives (Churn): 64
+
+ ![BL WWS](https://github.com/RuthNanjala/project_3/assets/141912190/7834c330-21ea-4925-adad-ecc66e8ed4db)
+
+Interpretation:
+The logistic regression model with SMOTE-resampled data achieved higher recall for the churn class, indicating better identification of instances of churn, albeit with a decrease in overall accuracy.
+
+Random Forest Model (Untuned)
+Results:
+Accuracy: 94.82%
+Classification Report:
+Precision (Churn): 96%
+Recall (Churn): 93%
+F1-Score (Churn): 95%
+Confusion Matrix:
+True Negatives (Non-churn): 565
+False Positives (Churn): 20
+False Negatives (Non-churn): 39
+True Positives (Churn): 516
+ROC-AUC Score: 98.95% 
+
+![URFM](https://github.com/RuthNanjala/project_3/assets/141912190/d2b4d62c-bc98-4c92-a928-170ff5066300)
+
+Interpretation:
+The random forest model demonstrated high accuracy and balanced precision and recall for the churn class, indicating good overall predictive performance.
+
+Random Forest Model (Tuned)
+Results:
+Accuracy: 95.26%
+Classification Report:
+Precision (Churn): 97%
+Recall (Churn): 94%
+F1-Score (Churn): 95%
+Confusion Matrix:
+True Negatives (Non-churn): 567
+False Positives (Churn): 18
+False Negatives (Non-churn): 36
+True Positives (Churn): 519
+ROC-AUC Score: 99.07%
+
+![TRFM](https://github.com/RuthNanjala/project_3/assets/141912190/765b6caf-ffd8-44df-9a12-fd37c76b6bb3)
+
+Interpretation:
+The tuned random forest model outperformed the untuned model, achieving higher accuracy and an impressive ROC-AUC score of 99.07%, indicating superior discrimination between positive and negative classes.
+In conclusion:
+The logistic regression baseline model, while providing an initial benchmark, showed limitations in identifying instances of churn.
+The SMOTE logistic regression model, designed to address class imbalance, improved recall for the churn class but resulted in reduced overall accuracy.
+The random forest model, especially after hyperparameter tuning, exhibited robust predictive performance, achieving high accuracy, precision, and recall. The tuned model's superior ROC-AUC score indicates its effectiveness in distinguishing between churn and non-churn instances.
+The tuned random forest model stands out as the preferred choice for predicting customer churn for SyriaTel, offering a balance between accuracy and effective identification of churn instances. Further deployment and monitoring of this model are recommended for real-time churn prediction.
 
 ## Recommendations
 Based on the findings, the following recommendations are made:
